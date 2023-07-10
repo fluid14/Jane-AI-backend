@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Res,
 } from '@nestjs/common';
 import { ActionInterface } from './models/action.interface';
@@ -28,8 +29,18 @@ export class ActionsController {
   }
 
   @Post()
-  async createActions(@Body() body: CreateActionDto, @Res() res: Response) {
+  async createAction(@Body() body: CreateActionDto, @Res() res: Response) {
     await this.actionsService.createAction(body);
     res.send({ message: 'Action created' });
+  }
+
+  @Put('/:id')
+  async updateAction(
+    @Param('id') id: string,
+    @Body() fields: CreateActionDto,
+    @Res() res: Response,
+  ) {
+    await this.actionsService.updateAction({ id, fields });
+    res.send({ message: 'Action updated' });
   }
 }

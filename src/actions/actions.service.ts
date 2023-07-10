@@ -35,4 +35,8 @@ export class ActionsService {
   async createAction(@Body() fields) {
     return await this.databaseService.connect('Resources').create([{ fields }]);
   }
+
+  async updateAction(payload) {
+    await this.databaseService.connect('Resources').update([payload]);
+  }
 }
