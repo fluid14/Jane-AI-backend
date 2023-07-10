@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { DatabaseService } from '../core/services/airtable/database.service';
 import { ActionInterface } from './models/action.interface';
+import { CreateActionDto } from './dtos/createAction.dto';
 
 @Injectable()
 export class ActionsService {
@@ -29,5 +30,9 @@ export class ActionsService {
 
   async deleteActions(records) {
     return await this.databaseService.connect('Resources').destroy(records);
+  }
+
+  async createAction(@Body() fields) {
+    return await this.databaseService.connect('Resources').create([{ fields }]);
   }
 }

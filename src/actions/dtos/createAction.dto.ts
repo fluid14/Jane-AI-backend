@@ -18,4 +18,7 @@ export class CreateActionDto {
 
   @IsString()
   userDescription: string;
+
+  @IsString()
+  category: string;
 }
