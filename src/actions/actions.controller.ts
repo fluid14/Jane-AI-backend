@@ -7,12 +7,15 @@ import {
   Post,
   Put,
   Res,
+  UseGuards,
 } from '@nestjs/common';
-import { ActionInterface } from './models/action.interface';
+import { ActionInterface } from './dto/action.interface';
 import { ActionsService } from './actions.service';
 import { Response } from 'express';
-import { CreateActionDto } from './dtos/createAction.dto';
+import { CreateActionDto } from './dto/createAction.dto';
+import { ApiKeyAuthGuard } from '../core/auth/guard/apiKeyAuth.guard';
 
+@UseGuards(ApiKeyAuthGuard)
 @Controller('actions')
 export class ActionsController {
   constructor(private actionsService: ActionsService) {}

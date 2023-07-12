@@ -1,7 +1,5 @@
 import { Body, Injectable } from '@nestjs/common';
 import { DatabaseService } from '../core/services/airtable/database.service';
-import { ActionInterface } from './models/action.interface';
-import { CreateActionDto } from './dtos/createAction.dto';
 
 @Injectable()
 export class ActionsService {
